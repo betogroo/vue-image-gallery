@@ -1,3 +1,8 @@
+<script setup lang="ts">
+import { useMainStore } from '@/modules/main/store/useMainStore'
+const store = useMainStore()
+const { name } = store
+</script>
 <template>
   <v-app-bar
     color="blue"
@@ -7,7 +12,7 @@
       <RouterLink
         class="text-white text-decoration-none"
         :to="{ name: 'HomeView' }"
-        >Vue Scaffold</RouterLink
+        >{{ name }}</RouterLink
       >
     </v-app-bar-title>
     <div class="ma-3">
