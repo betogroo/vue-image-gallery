@@ -14,7 +14,9 @@ console.log(images)
       v-for="item in images?.photos"
       :key="item.id"
       class="d-flex child-flex"
-      cols="3"
+      cols="6"
+      md="3"
+      sm="4"
     >
       <v-img
         :alt="item.alt"
