@@ -5,7 +5,10 @@ import { AppBar } from '@/shared/components'
   <v-app>
     <AppBar />
     <v-main>
-      <RouterView />
+      <Suspense>
+        <RouterView />
+        <template #fallback>Loading ...</template>
+      </Suspense>
     </v-main>
   </v-app>
 </template>
