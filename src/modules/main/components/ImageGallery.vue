@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import useFetchImages from '../composables/useFetchImages'
 import type { ImagesResults } from '@/shared/models/Images'
+import { useHelpers } from '@/shared/composables'
 const url = 'https://api.pexels.com/v1/curated'
 const { fetchImages } = useFetchImages()
+const { lastColumnGrid } = useHelpers()
 const images: ImagesResults | undefined = await fetchImages(url)
-console.log(images)
 </script>
 
 <template>
