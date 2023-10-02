@@ -1,30 +1,34 @@
 <script setup lang="ts">
-import useFetchImages from '../composables/useFetchImages'
-import type { ImagesResults } from '@/shared/models/Images'
-import { useHelpers } from '@/shared/composables'
-const url = 'https://api.pexels.com/v1/curated'
-const { fetchImages } = useFetchImages()
-const { lastColumnGrid } = useHelpers()
-const images: ImagesResults | undefined = await fetchImages(url)
+import { ImageContainer } from '.'
+
+const imageLayout = [
+  { cols: 4 },
+  {
+    cols: 8,
+    children: [{ cols: 12 }, { cols: 12 }],
+  },
+  { cols: 6 },
+  { cols: 3 },
+  { cols: 9 },
+  { cols: 4 },
+  { cols: 8 },
+]
 </script>
 
 <template>
-  <div>Não há imagens para exibir</div>
-  <v-row>
+  <v-row
+    justify="center"
+    no-gutters
+  >
     <v-col
-      v-for="item in images?.photos"
-      :key="item.id"
-      class="d-flex child-flex"
-      cols="6"
+      v-for="(x, y) in 15"
+      :key="x * y"
+      class="d-flex child-flex ma-1 pa-1"
+      cols="12"
       md="3"
       sm="4"
     >
-      <v-img
-        :alt="item.alt"
-        cover
-        height="100%"
-        :src="item.src.tiny"
-      ></v-img>
+      <ImageContainer />
     </v-col>
   </v-row>
 </template>

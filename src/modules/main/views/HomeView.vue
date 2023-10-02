@@ -8,11 +8,7 @@ const { name } = storeToRefs(store)
 
 <template>
   <v-container class="d-flex justify-center align-start fill-height">
-    <v-responsive
-      class="text-center"
-      max-width="600"
-    >
-      <h1 class="text-center text-h5">{{ name }}</h1>
+    <v-responsive class="text-center">
       <ImageGallery />
     </v-responsive>
   </v-container>

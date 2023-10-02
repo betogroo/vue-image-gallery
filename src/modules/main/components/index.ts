@@ -1,2 +1,4 @@
 import ImageGallery from './ImageGallery.vue'
-export { ImageGallery }
+import ImageContainer from './ImageContainer.vue'
+
+export { ImageContainer, ImageGallery }
