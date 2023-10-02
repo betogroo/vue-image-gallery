@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { ImageContainer } from '.'
+import useFetchImages from '../composables/useFetchImages'
+const { fetchImages } = useFetchImages()
+const images = await fetchImages('https://api.pexels.com/v1/curated')
 
 const imageLayout = [
   { cols: 4 },
@@ -17,18 +20,18 @@ const imageLayout = [
 
 <template>
   <v-row
+    dense
     justify="center"
-    no-gutters
   >
     <v-col
-      v-for="(x, y) in 15"
-      :key="x * y"
-      class="d-flex child-flex ma-1 pa-1"
-      cols="12"
+      v-for="photo in images?.photos"
+      :key="photo.id"
+      class="d-flex child-flex justify-center"
+      cols="6"
       md="3"
       sm="4"
     >
-      <ImageContainer />
+      <ImageContainer :photo="photo" />
     </v-col>
   </v-row>
 </template>
