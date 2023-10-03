@@ -31,7 +31,11 @@ const useFetchImages = () => {
       isPending.value = false
     }
   }
-  return { fetchImages }
+
+  const searchImages = (term: string) => {
+    console.log('vai buscar o ', term)
+  }
+  return { fetchImages, searchImages }
 }
 
 export default useFetchImages

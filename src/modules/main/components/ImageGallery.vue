@@ -1,8 +1,22 @@
 <script setup lang="ts">
+import { computed, ref, toRefs } from 'vue'
 import { ImageContainer } from '.'
 import useFetchImages from '../composables/useFetchImages'
+import { watchEffect } from 'vue'
+interface Props {
+  topic?: string | undefined
+}
+const props = defineProps<Props>()
+const { topic } = toRefs(props)
+
 const { fetchImages } = useFetchImages()
-const images = await fetchImages('https://api.pexels.com/v1/curated')
+
+const url = ref(
+  !topic?.value
+    ? 'https://api.pexels.com/v1/curated'
+    : `https://api.pexels.com/v1/search?query=${topic.value}`,
+)
+const images = await fetchImages(url.value)
 
 const imageLayout = [
   { cols: 4 },

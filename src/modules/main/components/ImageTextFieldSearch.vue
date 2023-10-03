@@ -1,16 +1,17 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+const route = useRouter()
 
-const $emit = defineEmits<{
-  handleSearch: [text: string]
-}>()
-
-const searchText = ref('')
+const searchTerm = ref('')
+const handleSearch = () => {
+  route.push({ name: 'SearchResults', params: { term: searchTerm.value } })
+}
 </script>
 
 <template>
   <v-text-field
-    v-model="searchText"
+    v-model="searchTerm"
     append-inner-icon="mdi-magnify"
     center-affix
     density="compact"
@@ -19,6 +20,7 @@ const searchText = ref('')
     placeholder="Digite um termo para a pesquisa"
     prepend-inner-icon="mdi-image-search"
     variant="solo-filled"
-    @click:append-inner="$emit('handleSearch', searchText)"
+    @click:append-inner="handleSearch"
+    v-on:keyup.enter="handleSearch"
   />
 </template>
