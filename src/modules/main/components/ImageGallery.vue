@@ -7,29 +7,48 @@ interface Props {
 }
 defineProps<Props>()
 
-const imageLayout = [
+const webLayout = [
   { cols: 4 },
-  {
-    cols: 4,
-    //children: [{ cols: 12 }, { cols: 12 }],
-  },
   { cols: 4 },
-  {
-    cols: 3,
+  { cols: 4 },
 
-    //children: [{ cols: 12 }, { cols: 12 }]
-  },
-  { cols: 6 },
-  { cols: 3 },
-  { cols: 6 },
   { cols: 2 },
   { cols: 4 },
-  { cols: 5 },
+  { cols: 3 },
+  { cols: 3 },
+
   { cols: 4 },
   { cols: 3 },
+  { cols: 5 },
+
+  { cols: 8 },
+  { cols: 4 },
+
+  { cols: 2 },
+  { cols: 7 },
+  { cols: 3 },
+]
+const mobileLayout = [
   { cols: 4 },
   { cols: 8 },
+
+  { cols: 3 },
   { cols: 6 },
+  { cols: 3 },
+
+  { cols: 4 },
+  { cols: 4 },
+  { cols: 4 },
+
+  { cols: 6 },
+  { cols: 6 },
+
+  { cols: 8 },
+  { cols: 4 },
+
+  { cols: 3 },
+  { cols: 6 },
+  { cols: 3 },
 ]
 </script>
 
@@ -46,8 +65,8 @@ const imageLayout = [
       >
         <v-col
           class="d-flex child-flex justify-center"
-          cols="6"
-          :md="imageLayout[index].cols"
+          :cols="mobileLayout[index].cols"
+          :md="webLayout[index].cols"
         >
           <ImageContainer :photo="photo" />
         </v-col>
