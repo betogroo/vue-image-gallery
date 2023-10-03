@@ -9,7 +9,7 @@ const { mobile } = useDisplay()
 <template>
   <v-app-bar
     color="blue"
-    density="compact"
+    density="comfortable"
     extension-height="80"
   >
     <template v-slot:title>
