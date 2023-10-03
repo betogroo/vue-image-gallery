@@ -4,7 +4,8 @@ import { ref } from 'vue'
 
 const error = ref<string | null>('')
 const isPending = ref<string | boolean>(false)
-
+const photos = ref<ImagesResults | undefined>(undefined)
+const url = ref<string | undefined>(undefined)
 const useFetchImages = () => {
   const fetchImages = async (
     url: string,
@@ -22,6 +23,7 @@ const useFetchImages = () => {
 
       const parsedData = ImagesSchemaWithPhotos.parse(imageResults)
       if (parsedData.total_results === 0) return undefined
+      photos.value = parsedData
       return parsedData
     } catch (err) {
       const e = err as Error
@@ -35,7 +37,7 @@ const useFetchImages = () => {
   const searchImages = (term: string) => {
     console.log('vai buscar o ', term)
   }
-  return { fetchImages, searchImages }
+  return { photos, url, fetchImages, searchImages }
 }
 
 export default useFetchImages
