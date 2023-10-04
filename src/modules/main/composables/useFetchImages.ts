@@ -21,13 +21,14 @@ const useFetchImages = () => {
     }
   }
 
-  const fetchImages = async (url: string | undefined) => {
+  const fetchImages = async (term: string, page: number) => {
     try {
-      if (url === undefined)
+      buildUrl(term, page)
+      if (url.value === undefined)
         throw new Error('Erro ao carregar as imagens (Url indefinida)')
       error.value = null
       isPending.value = true
-      const res = await fetch(url, {
+      const res = await fetch(url.value, {
         headers: {
           Authorization: import.meta.env.VITE_PEXELS_API_KEY,
         },

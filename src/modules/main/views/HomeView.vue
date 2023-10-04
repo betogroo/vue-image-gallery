@@ -6,22 +6,18 @@ import { toRefs } from 'vue'
 import { useRoute } from 'vue-router'
 const props = defineProps<Props>()
 const route = useRoute()
-const { fetchImages, photos, url, buildUrl } = useFetchImages()
+const { fetchImages, photos } = useFetchImages()
 interface Props {
   term: string
   page: number
 }
 const { term, page } = toRefs(props)
 
-buildUrl(term.value, page.value)
-await fetchImages(url.value)
-//}
+await fetchImages(term.value, page.value)
 watch(
   () => route.params,
   async () => {
-    console.log(term.value)
-    buildUrl(term.value, page.value)
-    await fetchImages(url.value)
+    await fetchImages(term.value, page.value)
   },
 )
 </script>

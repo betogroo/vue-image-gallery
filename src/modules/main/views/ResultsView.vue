@@ -15,14 +15,14 @@ const { term, page } = toRefs(props)
 
 buildUrl(term.value, page.value)
 console.log(url.value)
-await fetchImages(url.value!)
+//await fetchImages(url.value!)
 //}
 watch(
   () => route.params,
   async () => {
     console.log(term.value)
     buildUrl(term.value, page.value)
-    await fetchImages(url.value!)
+    //await fetchImages(url.value!)
   },
 )
 </script>
