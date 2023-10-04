@@ -72,6 +72,11 @@ const mobileLayout = [
             <ImageContainer :photo="photo" />
           </v-col>
         </template>
+        <RouterLink
+          v-if="images.page === 1"
+          :to="`?page=${images.page + 1}`"
+          >Ver mais</RouterLink
+        >
       </v-row>
     </v-responsive>
   </v-container>
