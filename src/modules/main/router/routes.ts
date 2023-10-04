@@ -12,11 +12,11 @@ const routes: CustomRouteRecordRaw[] = [
     },
   },
   {
-    path: '/search/:term',
+    path: '/results/:term?',
     component: () => import('../views/ResultsView.vue'),
     name: 'ResultsView',
     props: (route) => ({
-      term: route.params.term,
+      term: route.params.term || 'curated',
       page:
         route.query.page && route.query.page !== undefined
           ? +route.query.page

@@ -3,7 +3,7 @@ import { Photo } from '@/shared/models/Images'
 interface Props {
   photo: Photo
 }
-const props = defineProps<Props>()
+defineProps<Props>()
 const showImg = (photo: Photo) => {
   console.log(photo.id)
 }

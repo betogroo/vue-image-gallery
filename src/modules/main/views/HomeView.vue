@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ImageGallery } from '../components'
 import useFetchImages from '../composables/useFetchImages'
-const { fetchImages, photos } = useFetchImages()
-const url = 'https://api.pexels.com/v1/curated'
+const { fetchImages, photos, baseUrl } = useFetchImages()
+const url = `${baseUrl}curated`
 await fetchImages(url)
 </script>
 
