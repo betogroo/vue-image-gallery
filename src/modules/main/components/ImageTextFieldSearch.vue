@@ -19,7 +19,8 @@ const handleSearch = () => {
     label="Procurar Imagens"
     placeholder="Digite um termo para a pesquisa"
     prepend-inner-icon="mdi-image-search"
-    variant="solo-filled"
+    rounded="lg"
+    variant="solo"
     @click:append-inner="handleSearch"
     v-on:keyup.enter="handleSearch"
   />

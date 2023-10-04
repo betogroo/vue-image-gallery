@@ -24,7 +24,12 @@ const { mobile } = useDisplay()
       v-if="!mobile"
       v-slot:default
     >
-      <ImageTextFieldSearch />
+      <v-sheet
+        class="bg-transparent mr-6"
+        width="300"
+      >
+        <ImageTextFieldSearch />
+      </v-sheet>
     </template>
     <template
       v-else

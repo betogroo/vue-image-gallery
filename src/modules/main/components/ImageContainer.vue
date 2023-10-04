@@ -17,7 +17,7 @@ const showImg = (photo: Photo) => {
       class="bg-blue-grey-lighten-4 rounded-lg d-flex align-center ma-2"
       :class="{ 'on-hover': isHovering }"
       cover
-      height="200"
+      height="256"
       :lazy-src="photo.src.tiny"
       :src="photo.src.large"
       @click="showImg(photo)"
@@ -40,13 +40,13 @@ const showImg = (photo: Photo) => {
 
 <style scoped>
 .v-img {
-  transition: opacity 0.4s ease-in-out;
+  transition: opacity 0.8s ease-in-out;
   transition: transform 0.4s;
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .v-img:not(.on-hover) {
   transform: scale(1);
-  opacity: 0.6;
+  opacity: 0.7;
 }
 </style>

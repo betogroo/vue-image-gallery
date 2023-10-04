@@ -53,24 +53,26 @@ const mobileLayout = [
 </script>
 
 <template>
-  <v-sheet max-width="1024">
-    <v-row
-      v-if="images"
-      dense
-      justify="center"
-    >
-      <template
-        v-for="(photo, index) in images.photos"
-        :key="photo.id"
+  <v-container class="d-flex justify-center">
+    <v-responsive max-width="1024">
+      <v-row
+        v-if="images"
+        dense
+        justify="center"
       >
-        <v-col
-          class="d-flex child-flex justify-center"
-          :cols="mobileLayout[index].cols"
-          :md="webLayout[index].cols"
+        <template
+          v-for="(photo, index) in images.photos"
+          :key="photo.id"
         >
-          <ImageContainer :photo="photo" />
-        </v-col>
-      </template>
-    </v-row>
-  </v-sheet>
+          <v-col
+            class="d-flex child-flex justify-center"
+            :cols="mobileLayout[index].cols"
+            :md="webLayout[index].cols"
+          >
+            <ImageContainer :photo="photo" />
+          </v-col>
+        </template>
+      </v-row>
+    </v-responsive>
+  </v-container>
 </template>
