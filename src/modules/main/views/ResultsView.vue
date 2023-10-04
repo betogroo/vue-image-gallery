@@ -6,6 +6,7 @@ const props = defineProps<Props>()
 const { fetchImages, photos, url } = useFetchImages()
 interface Props {
   term: string
+  page: number
 }
 if (!url.value) {
   url.value = `https://api.pexels.com/v1/search?query=${props.term}`
@@ -24,7 +25,7 @@ watch(
 <template>
   <v-container>
     <v-responsive>
-      <h1>Resultados para {{ term }}</h1>
+      <h1>Resultados para {{ term }}, mostrando página {{ page }}</h1>
       <ImageGallery :images="photos" />
     </v-responsive>
   </v-container>

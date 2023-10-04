@@ -17,7 +17,7 @@ const showImg = (photo: Photo) => {
       class="bg-blue-grey-lighten-4 rounded-lg d-flex align-center ma-2"
       :class="{ 'on-hover': isHovering }"
       cover
-      :height="Math.ceil((photo.height / photo.width) * 224)"
+      height="224"
       :lazy-src="photo.src.tiny"
       :src="photo.src.large"
       @click="showImg(photo)"

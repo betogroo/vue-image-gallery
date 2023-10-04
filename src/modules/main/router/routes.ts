@@ -15,7 +15,13 @@ const routes: CustomRouteRecordRaw[] = [
     path: '/search/:term',
     component: () => import('../views/ResultsView.vue'),
     name: 'ResultsView',
-    props: (route) => ({ term: route.params.term }),
+    props: (route) => ({
+      term: route.params.term,
+      page:
+        route.query.page && route.query.page !== undefined
+          ? +route.query.page
+          : 1,
+    }),
     meta: {
       title: 'Resultado da Busca',
       requiresAuth: false,
