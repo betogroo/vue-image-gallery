@@ -21,9 +21,7 @@ const useFetchImages = () => {
     }
   }
 
-  const fetchImages = async (
-    url: string,
-  ): Promise<ImagesResults | undefined> => {
+  const fetchImages = async (url: string) => {
     try {
       error.value = null
       isPending.value = true
@@ -32,13 +30,12 @@ const useFetchImages = () => {
           Authorization: import.meta.env.VITE_PEXELS_API_KEY,
         },
       })
-      if (!res.ok) throw new Error('Erro ao carregar as images')
+      if (!res.ok) throw new Error('Erro ao carregar as imagens')
       const imageResults: ImagesResults = await res.json()
 
       const parsedData = ImagesSchemaWithPhotos.parse(imageResults)
       if (parsedData.total_results === 0) return undefined
       photos.value = parsedData
-      return parsedData
     } catch (err) {
       const e = err as Error
       error.value = e.message
