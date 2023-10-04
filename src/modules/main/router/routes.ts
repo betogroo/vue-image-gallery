@@ -19,22 +19,6 @@ const routes: CustomRouteRecordRaw[] = [
     },
   },
   {
-    path: '/results/:term?',
-    component: () => import('../views/ResultsView.vue'),
-    name: 'ResultsView',
-    props: (route) => ({
-      term: route.params.term || 'curated',
-      page:
-        route.query.page && route.query.page !== undefined
-          ? +route.query.page
-          : 1,
-    }),
-    meta: {
-      title: 'Resultado da Busca',
-      requiresAuth: false,
-    },
-  },
-  {
     path: '/about',
     component: () => import('../views/AboutView.vue'),
     name: 'AboutView',
