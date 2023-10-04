@@ -3,9 +3,16 @@ import { CustomRouteRecordRaw } from 'vue-router'
 
 const routes: CustomRouteRecordRaw[] = [
   {
-    path: '/',
+    path: '/:term?',
     component: () => import('../views/HomeView.vue'),
     name: 'HomeView',
+    props: (route) => ({
+      term: route.params.term || 'curated',
+      page:
+        route.query.page && route.query.page !== undefined
+          ? +route.query.page
+          : 1,
+    }),
     meta: {
       title: 'Home',
       requiresAuth: false,

@@ -21,8 +21,10 @@ const useFetchImages = () => {
     }
   }
 
-  const fetchImages = async (url: string) => {
+  const fetchImages = async (url: string | undefined) => {
     try {
+      if (url === undefined)
+        throw new Error('Erro ao carregar as imagens (Url indefinida)')
       error.value = null
       isPending.value = true
       const res = await fetch(url, {

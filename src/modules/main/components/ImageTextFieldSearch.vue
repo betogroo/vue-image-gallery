@@ -5,7 +5,7 @@ const route = useRouter()
 
 const searchTerm = ref('')
 const handleSearch = () => {
-  route.replace({ name: 'ResultsView', params: { term: searchTerm.value } })
+  route.replace({ name: 'HomeView', params: { term: searchTerm.value } })
 }
 </script>
 

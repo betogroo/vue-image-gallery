@@ -1,14 +1,37 @@
 <script setup lang="ts">
-import { ImageGallery } from '../components'
+import { watch } from 'vue'
+import ImageGallery from '../components/ImageGallery.vue'
 import useFetchImages from '../composables/useFetchImages'
-const { fetchImages, photos, baseUrl } = useFetchImages()
-const url = `${baseUrl}curated`
-await fetchImages(url)
+import { toRefs } from 'vue'
+import { useRoute } from 'vue-router'
+const props = defineProps<Props>()
+const route = useRoute()
+const { fetchImages, photos, url, buildUrl } = useFetchImages()
+interface Props {
+  term: string
+  page: number
+}
+const { term, page } = toRefs(props)
+
+buildUrl(term.value, page.value)
+await fetchImages(url.value)
+//}
+watch(
+  () => route.params,
+  async () => {
+    console.log(term.value)
+    buildUrl(term.value, page.value)
+    await fetchImages(url.value)
+  },
+)
 </script>
 
 <template>
-  <v-container class="d-flex justify-center align-start fill-height">
-    <v-responsive class="text-center">
+  <v-container>
+    <v-responsive>
+      <h1 v-if="term !== 'curated'">
+        Resultados para {{ term }}, mostrando página {{ page }}
+      </h1>
       <ImageGallery :images="photos" />
     </v-responsive>
   </v-container>
