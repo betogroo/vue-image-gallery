@@ -13,8 +13,8 @@ const routes: CustomRouteRecordRaw[] = [
   },
   {
     path: '/search/:term',
-    component: () => import('../views/SearchResults.vue'),
-    name: 'SearchResults',
+    component: () => import('../views/ResultsView.vue'),
+    name: 'ResultsView',
     props: (route) => ({ term: route.params.term }),
     meta: {
       title: 'Resultado da Busca',
