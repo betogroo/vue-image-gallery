@@ -19,7 +19,7 @@ const showImg = (photo: Photo) => {
       cover
       height="224"
       :lazy-src="photo.src.tiny"
-      :src="photo.src.large"
+      :src="photo.src.small"
       @click="showImg(photo)"
     >
       <template v-slot:placeholder>
