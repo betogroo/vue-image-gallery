@@ -81,19 +81,6 @@ const mobileLayout = [
           </v-col>
         </template>
       </v-row>
-      <v-btn></v-btn>
-      <v-container>
-        <v-responsive max-width="85vw">
-          <v-pagination
-            class="my-4"
-            :length="totalPages"
-            :v-model="images?.page"
-            @next="router.push(`?page=${images?.page! + 1}`)"
-            @prev="router.push(`?page=${images?.page! - 1}`)"
-            @update:model-value="(item) => router.push(`?page=${item}`)"
-          ></v-pagination>
-        </v-responsive>
-      </v-container>
     </v-responsive>
   </v-container>
 </template>

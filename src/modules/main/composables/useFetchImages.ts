@@ -8,6 +8,22 @@ const photos = ref<ImagesResults | undefined>(undefined)
 const url = ref<string | undefined>(undefined)
 const baseUrl = 'https://api.pexels.com/v1/'
 const useFetchImages = () => {
+  const getPageNumber = (url: string): number | null | string => {
+    const { searchParams } = new URL(url)
+    return searchParams ? searchParams.get('page') : null
+  }
+
+  const totalPages = photos.value
+    ? Math.ceil(photos.value?.total_results / photos.value?.per_page)
+    : 0
+  const nextPage = photos.value?.next_page
+    ? getPageNumber(photos.value.next_page)
+    : null
+  const prevPage = photos.value?.prev_page
+    ? getPageNumber(photos.value.prev_page)
+    : null
+  const page = photos.value?.page
+
   const buildUrl = (term: string, page: number) => {
     url.value = baseUrl
     if (term === 'curated') {
@@ -51,7 +67,18 @@ const useFetchImages = () => {
   const searchImages = (term: string) => {
     console.log('vai buscar o ', term)
   }
-  return { photos, baseUrl, url, fetchImages, searchImages, buildUrl }
+  return {
+    photos,
+    baseUrl,
+    url,
+    page,
+    nextPage,
+    prevPage,
+    totalPages,
+    fetchImages,
+    searchImages,
+    buildUrl,
+  }
 }
 
 export default useFetchImages
