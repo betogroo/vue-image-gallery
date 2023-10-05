@@ -1,11 +1,19 @@
 <script setup lang="ts">
 import { ImagesResults } from '@/shared/models/Images'
 import { ImageContainer } from '.'
+import { useRouter } from 'vue-router'
+const props = defineProps<Props>()
+const router = useRouter()
+import { toRefs } from 'vue'
 
 interface Props {
   images: ImagesResults | undefined
 }
-defineProps<Props>()
+const { images } = toRefs(props)
+
+const totalPages = images.value
+  ? Math.ceil(images.value?.total_results / images.value?.per_page)
+  : 0
 
 const webLayout = [
   { cols: 4 },
@@ -73,6 +81,19 @@ const mobileLayout = [
           </v-col>
         </template>
       </v-row>
+      <v-btn></v-btn>
+      <v-container>
+        <v-responsive max-width="85vw">
+          <v-pagination
+            class="my-4"
+            :length="totalPages"
+            :v-model="images?.page"
+            @next="router.push(`?page=${images?.page! + 1}`)"
+            @prev="router.push(`?page=${images?.page! - 1}`)"
+            @update:model-value="(item) => router.push(`?page=${item}`)"
+          ></v-pagination>
+        </v-responsive>
+      </v-container>
     </v-responsive>
   </v-container>
 </template>
